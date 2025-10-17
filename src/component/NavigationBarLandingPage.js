@@ -4,7 +4,7 @@ import { BookOpenText } from 'lucide-react';
 import { useState } from 'react';
 import { bokor } from '@/app/ui/fonts/font';
 
-export default function Navigation() {
+export default function NavigationBarLandingPage() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 

@@ -1,6 +1,6 @@
-import './globals.css';
-import Navigation from '@/component/Navigation';
-import { BBHSansHegartyRegular, bokor, robotoMono } from './ui/fonts/font';
+import '../globals.css';
+import NavigationBarLandingPage from '@/component/NavigationBarLandingPage';
+import { BBHSansHegartyRegular, bokor, robotoMono } from '../ui/fonts/font';
 
 export const metadata = {
     title: 'Create Next App',
@@ -8,12 +8,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+    console.log('Rendering RootLayout');
     return (
         <html lang="en">
             <body
                 className={` ${robotoMono.variable} ${bokor.variable} ${BBHSansHegartyRegular.variable} antialiased flex justify-center`}
             >
-                <Navigation />
+                <NavigationBarLandingPage />
                 {children}
             </body>
         </html>
