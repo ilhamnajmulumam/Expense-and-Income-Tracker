@@ -14,8 +14,10 @@ export const bokor = Bokor({
 
 export const BBHSansHegartyRegular = localFont({
     src: './BBHSansHegarty-Regular.ttf',
+    variable: '--font-BBHSansHegarty',
 });
 
 export const BBHSansBogle = localFont({
     src: './BBHSansBogle-Regular.ttf',
+    variable: '--font-BBHSansBogle',
 });

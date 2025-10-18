@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+@theme inline {
+    --font-robotoMono: var(--font-roboto-mono);
+    --font-bokor: var(--font-bokor);
+    --font-BBHSansHegartyRegular: var(--font-BBHSansHegarty);
+    --font-BBHSansBogle: var(--font-BBHSansBogle);
+}
