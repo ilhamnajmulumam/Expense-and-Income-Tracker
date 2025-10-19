@@ -1,11 +1,11 @@
-import FeaturedPostSection from '@/component/FeaturedPostSection';
+import FeaturesSection from '@/component/FeaturesSection';
 import HeroSection from '@/component/HeroSection';
 
 export default function Home() {
     return (
         <div>
             <HeroSection />
-            <FeaturedPostSection />
+            <FeaturesSection />
         </div>
     );
 }

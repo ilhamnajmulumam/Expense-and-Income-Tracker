@@ -27,6 +27,7 @@ export default function NavigationBarUserDashboard() {
             href: '/user/add-transaction',
             icon: <CirclePlus />,
         },
+        { name: 'Categories', href: '/user/categories', icon: <CirclePlus /> },
         { name: 'Reports', href: '/user/reports', icon: <ChartColumnBig /> },
         { name: 'Settings', href: '/user/settings', icon: <Settings /> },
         { name: 'Logout', href: '/', icon: <LogOut /> },
