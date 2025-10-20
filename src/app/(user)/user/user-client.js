@@ -8,11 +8,15 @@ import {
     PiggyBank,
 } from 'lucide-react';
 
-export default function UserPageClient() {
+export default function UserPageClient({ session }) {
+    const user = session.user;
+
     return (
         <div className="flex flex-col gap-6 md:p-20 h-[100vh]">
             <div>
-                <h2 className="text-3xl font-bold">Financial Dashboard</h2>
+                <h2 className="text-3xl font-bold">
+                    Financial Dashboard {user.name}
+                </h2>
             </div>
 
             {/* Empat Kartu Statistik */}

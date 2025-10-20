@@ -4,7 +4,7 @@ import { BookOpenText } from 'lucide-react';
 import { useState } from 'react';
 import { bokor } from '@/app/ui/fonts/font';
 
-export default function NavigationBarLandingPage() {
+export default function NavigationBarLandingPage({ session }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,7 +15,7 @@ export default function NavigationBarLandingPage() {
                     href="#"
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
-                    <BookOpenText color="white" />
+                    <BookOpenText color="black" />
                     <span
                         className={`self-center ${bokor.className} text-2xl font-semibold whitespace-nowrap dark:text-white`}
                     >
@@ -178,14 +178,17 @@ export default function NavigationBarLandingPage() {
                                 Sign up
                             </a>
                         </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
-                            >
-                                Log Out
-                            </a>
-                        </li>
+
+                        {session && (
+                            <li>
+                                <a
+                                    href="#"
+                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
+                                >
+                                    Sign Out
+                                </a>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

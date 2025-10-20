@@ -10,9 +10,21 @@ import {
     Settings,
     LogOut,
 } from 'lucide-react';
+import { signOut } from '../../lib/action/auth-action';
+import { useRouter } from 'next/navigation';
 
 export default function NavigationBarUserDashboard() {
     const pathname = usePathname();
+    const router = useRouter();
+
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+            router.push('/sign-in');
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
 
     // daftar menu
     const menus = [
@@ -30,7 +42,6 @@ export default function NavigationBarUserDashboard() {
         { name: 'Categories', href: '/user/categories', icon: <CirclePlus /> },
         { name: 'Reports', href: '/user/reports', icon: <ChartColumnBig /> },
         { name: 'Settings', href: '/user/settings', icon: <Settings /> },
-        { name: 'Logout', href: '/', icon: <LogOut /> },
     ];
 
     return (
@@ -59,6 +70,15 @@ export default function NavigationBarUserDashboard() {
                     );
                 })}
             </div>
+            {/* Tombol Logout */}
+
+            <button
+                onClick={handleSignOut}
+                className="flex items-center gap-2 p-4 mt-auto text-red-600 hover:bg-red-50 border-t border-gray-200"
+            >
+                <LogOut />
+                <span>Logout</span>
+            </button>
         </nav>
     );
 }
