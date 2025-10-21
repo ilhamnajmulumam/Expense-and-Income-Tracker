@@ -4,7 +4,7 @@ import { BBHSansBogle, robotoMono } from '@/app/ui/fonts/font';
 
 export default function HeroSection() {
     return (
-        <section className="w-screen py-20 mt-10 bg-gradient-to-b from-green-400 to-green-50 flex justify-center">
+        <section className="w-screen py-20 mt-10 bg-gradient-to-b from-green-400 to-white flex justify-center">
             <div className="md:h-[80vh] md:flex-row flex flex-col items-center max-w-7xl">
                 <div className="p-10 mx-auto space-y-8">
                     <header>
