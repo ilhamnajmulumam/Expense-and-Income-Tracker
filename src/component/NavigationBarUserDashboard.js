@@ -9,6 +9,7 @@ import {
     ChartColumnBig,
     Settings,
     LogOut,
+    SlidersVertical,
 } from 'lucide-react';
 import { signOut } from '../../lib/action/auth-action';
 import { useRouter } from 'next/navigation';
@@ -39,7 +40,11 @@ export default function NavigationBarUserDashboard() {
             href: '/user/add-transaction',
             icon: <CirclePlus />,
         },
-        { name: 'Categories', href: '/user/categories', icon: <CirclePlus /> },
+        {
+            name: 'Categories',
+            href: '/user/categories',
+            icon: <SlidersVertical />,
+        },
         { name: 'Reports', href: '/user/reports', icon: <ChartColumnBig /> },
         { name: 'Settings', href: '/user/settings', icon: <Settings /> },
     ];
