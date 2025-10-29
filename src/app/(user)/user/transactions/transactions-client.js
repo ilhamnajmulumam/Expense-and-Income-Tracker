@@ -88,7 +88,7 @@ export default function TransactionsClient() {
                                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">
                                     Category
                                 </th>
-                                <th className="px-4 py-2 text-right text-sm font-medium text-gray-600">
+                                <th className="px-4 py-2 text-center text-sm font-medium text-gray-600">
                                     Amount
                                 </th>
                                 <th className="px-4 py-2 text-center text-sm font-medium text-gray-600">
