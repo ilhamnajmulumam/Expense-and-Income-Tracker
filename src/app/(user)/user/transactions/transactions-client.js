@@ -1,42 +1,12 @@
-// ...existing code...
-import { Search } from 'lucide-react';
+'use client';
 
-export default function TransactionsClient() {
-    const transactions = [
-        {
-            id: 1,
-            date: '2025-10-01',
-            description: 'Freelance project',
-            category: 'Work',
-            amount: 15000000,
-            type: 'Income',
-        },
-        {
-            id: 2,
-            date: '2025-10-05',
-            description: 'Groceries',
-            category: 'Food',
-            amount: -10000,
-            type: 'Expense',
-        },
-        {
-            id: 3,
-            date: '2025-10-08',
-            description: 'Salary',
-            category: 'Salary',
-            amount: 32000000,
-            type: 'Income',
-        },
-        {
-            id: 4,
-            date: '2025-10-10',
-            description: 'Electric bill',
-            category: 'Utilities',
-            amount: -100000,
-            type: 'Expense',
-        },
-    ];
-    // ...existing code...
+import { Search } from 'lucide-react';
+import { useState, useMemo } from 'react';
+
+export default function TransactionsClient({ transactions }) {
+    const [filterType, setFilterType] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
+
     const formatCurrency = (value) =>
         // format ke Rupiah (IDR) tanpa desimal
         new Intl.NumberFormat('id-ID', {
@@ -44,7 +14,28 @@ export default function TransactionsClient() {
             currency: 'IDR',
             maximumFractionDigits: 0,
         }).format(value);
-    // ...existing code...
+
+    // Filter + Search logic
+    const filteredTransactions = useMemo(() => {
+        if (!transactions || !Array.isArray(transactions)) return [];
+
+        return transactions.filter((t) => {
+            // Filter berdasarkan tipe
+            const matchType =
+                filterType === 'all'
+                    ? true
+                    : t.type.toLowerCase() === filterType;
+
+            // Filter berdasarkan pencarian
+            const matchSearch =
+                t.description
+                    .toLowerCase()
+                    .includes(searchQuery.toLowerCase()) ||
+                t.category.toLowerCase().includes(searchQuery.toLowerCase());
+
+            return matchType && matchSearch;
+        });
+    }, [transactions, filterType, searchQuery]);
 
     return (
         <div className="flex flex-col gap-6 md:p-20 h-[100vh]">
@@ -54,22 +45,28 @@ export default function TransactionsClient() {
             <div className="bg-white shadow-md p-4 rounded-2xl h-[100vh]">
                 <div className="flex justify-between">
                     <div className="flex gap-2">
-                        <button className="w-20 h-10 border rounded-lg">
-                            All
-                        </button>
-                        <button className="w-20 h-10 border rounded-lg">
-                            Income
-                        </button>
-                        <button className="w-20 h-10 border rounded-lg">
-                            Expense
-                        </button>
+                        {['all', 'income', 'expense'].map((type) => (
+                            <button
+                                key={type}
+                                onClick={() => setFilterType(type)}
+                                className={`w-24 h-10 border rounded-lg transition ${
+                                    filterType === type
+                                        ? 'bg-blue-600 text-white border-blue-600'
+                                        : 'hover:bg-gray-100'
+                                }`}
+                            >
+                                {type.charAt(0).toUpperCase() + type.slice(1)}
+                            </button>
+                        ))}
                     </div>
                     <div className="flex gap-2 items-center border p-2 rounded-xl">
-                        <Search />
+                        <Search className="text-gray-500" />
                         <input
                             type="text"
-                            placeholder="Search"
-                            className="outline-none"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="outline-none w-40 md:w-60"
                         />
                     </div>
                 </div>
@@ -100,39 +97,50 @@ export default function TransactionsClient() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y">
-                            {transactions.map((t) => (
-                                <tr key={t.id} className="hover:bg-gray-50">
-                                    <td className="px-4 py-3 text-sm text-gray-700">
-                                        {t.date}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-gray-700">
-                                        {t.description}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-gray-700">
-                                        {t.category}
-                                    </td>
+                            {filteredTransactions.length > 0 ? (
+                                filteredTransactions.map((t) => (
+                                    <tr key={t.id} className="hover:bg-gray-50">
+                                        <td className="px-4 py-3 text-sm text-gray-700">
+                                            {t.date}
+                                        </td>
+                                        <td className="px-4 py-3 text-sm text-gray-700">
+                                            {t.description}
+                                        </td>
+                                        <td className="px-4 py-3 text-sm text-gray-700">
+                                            {t.category}
+                                        </td>
+                                        <td
+                                            className={`px-4 py-3 text-sm font-medium text-center ${
+                                                t.type === 'income'
+                                                    ? 'text-green-600'
+                                                    : 'text-red-600'
+                                            }`}
+                                        >
+                                            {formatCurrency(Math.abs(t.amount))}
+                                        </td>
+                                        <td className="px-4 py-3 text-center text-sm text-gray-700">
+                                            {t.type}
+                                        </td>
+                                        <td className="px-4 py-3 text-center">
+                                            <button className="text-sm text-blue-600 hover:underline mr-2">
+                                                Edit
+                                            </button>
+                                            <button className="text-sm text-red-600 hover:underline">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
                                     <td
-                                        className={`px-4 py-3 text-sm font-medium ${
-                                            t.amount >= 0
-                                                ? 'text-green-600'
-                                                : 'text-red-600'
-                                        }`}
+                                        colSpan={6}
+                                        className="text-center py-4 text-gray-500 text-sm"
                                     >
-                                        {formatCurrency(Math.abs(t.amount))}
-                                    </td>
-                                    <td className="px-4 py-3 text-center text-sm text-gray-700">
-                                        {t.type}
-                                    </td>
-                                    <td className="px-4 py-3 text-center">
-                                        <button className="text-sm text-blue-600 hover:underline mr-2">
-                                            Edit
-                                        </button>
-                                        <button className="text-sm text-red-600 hover:underline">
-                                            Delete
-                                        </button>
+                                        No transactions found.
                                     </td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
                 </div>

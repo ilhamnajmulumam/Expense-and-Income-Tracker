@@ -1,5 +1,5 @@
 'use client';
-
+import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,9 +9,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 
-// register komponen ChartJS yang dipakai
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -21,43 +19,34 @@ ChartJS.register(
     Legend
 );
 
-export default function IncomeExpenseChart() {
+export default function IncomeExpenseChart({ dataServer }) {
+    if (!dataServer) {
+        return <p className="text-gray-400 text-center">No data available</p>;
+    }
+
     const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        labels: dataServer.labels,
         datasets: [
             {
                 label: 'Income',
-                data: [3000, 4000, 3500, 5000, 4800],
+                data: dataServer.income,
                 backgroundColor: 'rgba(10, 245, 47, 0.8)',
             },
             {
                 label: 'Expenses',
-                data: [2500, 2000, 3000, 2700, 3500],
+                data: dataServer.expense,
                 backgroundColor: 'rgba(230, 29, 29, 0.8)',
             },
         ],
     };
 
     const options = {
-        plugins: {
-            legend: {
-                display: true,
-                position: 'bottom', // bisa 'top', 'bottom', 'left', 'right'
-                labels: {
-                    color: '#000', // warna teks legend
-                    font: {
-                        size: 14,
-                        family: 'Arial',
-                    },
-                    boxWidth: 20, // ukuran kotak warna
-                    padding: 10,
-                },
-            },
-        },
+        plugins: { legend: { position: 'bottom' } },
+        responsive: true,
     };
 
     return (
-        <div className="bg-white p-4">
+        <div className="bg-white p-4 flex flex-col gap-4">
             <Bar data={data} options={options} />
         </div>
     );

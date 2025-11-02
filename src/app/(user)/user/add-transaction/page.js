@@ -1,9 +1,12 @@
+import { getCategories } from '../../../../../lib/action/category-action';
 import AddTransactionClient from './addtransaction-client';
 
-export default function AddTransactionPage() {
+export default async function AddTransactionPage() {
+    const categories = await getCategories();
+
     return (
         <div className="bg-gray-200">
-            <AddTransactionClient />
+            <AddTransactionClient categories={categories} />
         </div>
     );
 }
