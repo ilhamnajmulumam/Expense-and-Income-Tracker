@@ -3,6 +3,8 @@ import { auth } from '../../../../lib/auth';
 import UserPageClient from './user-client';
 import { redirect } from 'next/navigation';
 import {
+    getAvailableMonthsServer,
+    getExpenseBreakdownServer,
     getFinancialSummary,
     getFourTransactions,
     getMonthlySummaryServer,
@@ -22,6 +24,32 @@ export default async function UserPage() {
     const summary = await getFinancialSummary();
     const transactions = await getFourTransactions();
     const dataServer = await getMonthlySummaryServer();
+    const availableMonths = await getAvailableMonthsServer();
+
+    const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+
+    const breakdownData = {};
+    for (const label of availableMonths) {
+        const [monthName, yearStr] = label.split(' ');
+        const month = monthNames.indexOf(monthName) + 1;
+        const year = Number(yearStr);
+
+        const data = await getExpenseBreakdownServer(month, year);
+        breakdownData[label] = data;
+    }
 
     // Format data agar cocok untuk tabel
     const formattedTransactions = transactions.map((t) => ({
@@ -47,7 +75,7 @@ export default async function UserPage() {
                         <h3 className="font-semibold mb-2">
                             Income vs Expenses
                         </h3>
-                        <div className="h-80 flex items-center justify-center text-gray-400">
+                        <div className="h-80 flex text-gray-400">
                             <IncomeExpenseChart dataServer={dataServer} />
                         </div>
                     </div>
@@ -57,7 +85,10 @@ export default async function UserPage() {
                             Expenses Breakdown
                         </h3>
                         <div className="h-80 flex items-center justify-center text-gray-400">
-                            <ExpenseBreakdownChart />
+                            <ExpenseBreakdownChart
+                                breakdownData={breakdownData}
+                                availableMonths={availableMonths}
+                            />
                         </div>
                     </div>
                 </div>

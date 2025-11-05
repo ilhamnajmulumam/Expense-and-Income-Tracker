@@ -45,7 +45,7 @@ export default function TransactionsClient({ transactions }) {
             <div className="bg-white shadow-md p-4 rounded-2xl h-[100vh]">
                 <div className="flex justify-between">
                     <div className="flex gap-2">
-                        {['all', 'income', 'expense'].map((type) => (
+                        {['all', 'income', 'expense', 'saving'].map((type) => (
                             <button
                                 key={type}
                                 onClick={() => setFilterType(type)}
@@ -111,7 +111,7 @@ export default function TransactionsClient({ transactions }) {
                                         </td>
                                         <td
                                             className={`px-4 py-3 text-sm font-medium text-center ${
-                                                t.type === 'income'
+                                                t.type === 'INCOME'
                                                     ? 'text-green-600'
                                                     : 'text-red-600'
                                             }`}

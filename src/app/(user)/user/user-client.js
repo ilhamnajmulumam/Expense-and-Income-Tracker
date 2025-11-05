@@ -127,7 +127,7 @@ export default function UserPageClient({ session, summary, transactions }) {
                                         </td>
                                         <td
                                             className={`px-4 py-3 text-sm font-medium text-center ${
-                                                t.type === 'income'
+                                                t.type === 'INCOME'
                                                     ? 'text-green-600'
                                                     : 'text-red-600'
                                             }`}
