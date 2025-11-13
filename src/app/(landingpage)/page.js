@@ -10,13 +10,27 @@ import ReviewsSection from '@/component/ReviewsSection';
 export default function Home() {
     return (
         <div className="overflow-x-hidden">
-            <HeroSection />
-            <FeaturesSection />
-            <HowItWorkSection />
-            <ReviewsSection />
-            <PriceSection />
-            <FAQSection />
-            <CTASection />
+            <section id="hero-section">
+                <HeroSection />
+            </section>
+            <section id="features-section">
+                <FeaturesSection />
+            </section>
+            <section id="how-it-works-section">
+                <HowItWorkSection />
+            </section>
+            <section id="reviews-section">
+                <ReviewsSection />
+            </section>
+            <section id="price-section">
+                <PriceSection />
+            </section>
+            <section id="faq-section">
+                <FAQSection />
+            </section>
+            <section id="cta-section">
+                <CTASection />
+            </section>
             <FooterSection />
         </div>
     );

@@ -7,7 +7,6 @@ import {
     ArrowLeftRight,
     CirclePlus,
     ChartColumnBig,
-    Settings,
     LogOut,
     SlidersVertical,
 } from 'lucide-react';
@@ -46,7 +45,6 @@ export default function NavigationBarUserDashboard() {
             icon: <SlidersVertical />,
         },
         { name: 'Reports', href: '/user/reports', icon: <ChartColumnBig /> },
-        { name: 'Settings', href: '/user/settings', icon: <Settings /> },
     ];
 
     return (

@@ -9,7 +9,7 @@ export default function NavigationBarLandingPage({ session }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 left-0 z-50 w-full">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 fixed top-0 left-0 z-50 w-full shadow">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a
                     href="#"
@@ -65,101 +65,126 @@ export default function NavigationBarLandingPage({ session }) {
                             </a>
                         </li>
 
-                        {/* Dropdown */}
-                        <li className="relative">
-                            <button
-                                id="dropdownNavbarLink"
-                                onClick={() =>
-                                    setIsDropdownOpen(!isDropdownOpen)
-                                }
-                                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500"
-                            >
-                                Dropdown
-                                <svg
-                                    className="w-2.5 h-2.5 ms-2.5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
+                        {session && (
+                            <li className="relative">
+                                <button
+                                    id="dropdownNavbarLink"
+                                    onClick={() =>
+                                        setIsDropdownOpen(!isDropdownOpen)
+                                    }
+                                    className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500"
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="m1 1 4 4 4-4"
-                                    />
-                                </svg>
-                            </button>
-
-                            {/* Isi dropdown, muncul saat isDropdownOpen true */}
-                            {isDropdownOpen && (
-                                <div
-                                    id="dropdownNavbar"
-                                    className="absolute z-10 mt-2 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
-                                >
-                                    <ul
-                                        className="py-2 text-sm text-gray-700 dark:text-gray-400"
-                                        aria-labelledby="dropdownLargeButton"
+                                    Dropdown
+                                    <svg
+                                        className="w-2.5 h-2.5 ms-2.5"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
                                     >
-                                        <li>
-                                            <a
-                                                href="/user"
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            >
-                                                Dashboard
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            >
-                                                Settings
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            >
-                                                Earnings
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div className="py-1">
-                                        <a
-                                            href="#"
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="m1 1 4 4 4-4"
+                                        />
+                                    </svg>
+                                </button>
+
+                                {/* Isi dropdown, muncul saat isDropdownOpen true */}
+                                {isDropdownOpen && (
+                                    <div
+                                        id="dropdownNavbar"
+                                        className="absolute z-10 mt-2 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
+                                    >
+                                        <ul
+                                            className="py-2 text-sm text-gray-700 dark:text-gray-400"
+                                            aria-labelledby="dropdownLargeButton"
                                         >
-                                            Sign out
-                                        </a>
+                                            <li>
+                                                <a
+                                                    href="/user"
+                                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                >
+                                                    Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#"
+                                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                >
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#"
+                                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                >
+                                                    Earnings
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div className="py-1">
+                                            <a
+                                                href="#"
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                            >
+                                                Sign out
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </li>
+                                )}
+                            </li>
+                        )}
 
                         <li>
                             <a
-                                href="#"
+                                href="#features-section"
                                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
                             >
-                                Services
+                                Features
                             </a>
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="#how-it-works-section"
                                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
                             >
-                                Pricing
+                                How It Works
                             </a>
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="#reviews-section"
                                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
                             >
-                                Contact
+                                Reviews
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#price-section"
+                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
+                            >
+                                Price
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#faq-section"
+                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
+                            >
+                                FAQ
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#cta-section"
+                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white"
+                            >
+                                CTA
                             </a>
                         </li>
                         {!session && (

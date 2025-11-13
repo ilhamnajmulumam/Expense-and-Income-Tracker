@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+html {
+    scroll-behavior: smooth;
+}
+
 @theme inline {
     --font-robotoMono: var(--font-roboto-mono);
     --font-bokor: var(--font-bokor);

@@ -20,7 +20,7 @@ export default function UserPageClient({ session, summary, transactions }) {
         }).format(value);
 
     return (
-        <div>
+        <div className="flex flex-col gap-6">
             <div>
                 <h2 className="text-3xl font-bold">Welcome {user.name}</h2>
             </div>
