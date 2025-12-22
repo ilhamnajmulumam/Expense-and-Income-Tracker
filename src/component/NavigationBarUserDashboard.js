@@ -28,31 +28,46 @@ export default function NavigationBarUserDashboard() {
 
     // daftar menu
     const menus = [
-        { name: 'Dashboard', href: '/user', icon: <LayoutDashboard /> },
+        {
+            name: 'Dashboard',
+            href: '/user',
+            icon: <LayoutDashboard size={24} />,
+        },
         {
             name: 'Transactions',
             href: '/user/transactions',
-            icon: <ArrowLeftRight />,
+            icon: <ArrowLeftRight size={24} />,
         },
         {
             name: 'Add Transactions',
             href: '/user/add-transaction',
-            icon: <CirclePlus />,
+            icon: <CirclePlus size={24} />,
         },
         {
             name: 'Categories',
             href: '/user/categories',
-            icon: <SlidersVertical />,
+            icon: <SlidersVertical size={24} />,
         },
-        { name: 'Reports', href: '/user/reports', icon: <ChartColumnBig /> },
+        {
+            name: 'Reports',
+            href: '/user/reports',
+            icon: <ChartColumnBig size={24} />,
+        },
     ];
 
     return (
-        <nav className="flex flex-col md:w-80 h-[100vh] text-black bg-white shadow-md gap-4">
-            <h1 className="font-bold text-2xl md:px-4 md:py-4 border-b-2 text-blue-500">
+        <nav className="flex flex-col w-[20%] md:w-80 h-[100vh] text-black bg-white shadow-md gap-4 transition-all duration-300">
+            {/* Logo Text -> tampil hanya di desktop */}
+            <h1 className="hidden md:block font-bold text-2xl px-4 py-4 border-b-2 text-blue-500">
                 Financial Dashboard
             </h1>
 
+            {/* Logo Saja untuk Mobile */}
+            <div className="md:hidden flex justify-center py-4 border-b">
+                <LayoutDashboard size={32} className="text-blue-500" />
+            </div>
+
+            {/* Menu */}
             <div className="flex flex-col gap-1">
                 {menus.map((menu) => {
                     const isActive = pathname === menu.href;
@@ -61,26 +76,29 @@ export default function NavigationBarUserDashboard() {
                         <Link
                             key={menu.name}
                             href={menu.href}
-                            className={`flex items-center gap-2 p-4  transition-all ${
+                            className={`flex items-center gap-2 p-4 transition-all justify-center md:justify-start ${
                                 isActive
                                     ? 'bg-blue-100 text-blue-600 border-r-4 border-blue-600 font-semibold'
                                     : 'hover:bg-gray-100 text-gray-700'
                             }`}
                         >
                             {menu.icon}
-                            <span>{menu.name}</span>
+                            {/* Hide text in mobile */}
+                            <span className="hidden md:inline">
+                                {menu.name}
+                            </span>
                         </Link>
                     );
                 })}
             </div>
-            {/* Tombol Logout */}
 
+            {/* Logout Button */}
             <button
                 onClick={handleSignOut}
-                className="flex items-center gap-2 p-4 mt-auto text-red-600 hover:bg-red-50 border-t border-gray-200"
+                className="flex items-center gap-2 p-4 mt-auto text-red-600 hover:bg-red-50 border-t border-gray-200 justify-center md:justify-start"
             >
-                <LogOut />
-                <span>Logout</span>
+                <LogOut size={24} />
+                <span className="hidden md:inline">Logout</span>
             </button>
         </nav>
     );

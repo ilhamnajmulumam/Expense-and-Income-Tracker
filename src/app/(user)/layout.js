@@ -17,7 +17,7 @@ export default function UserLayout({ children }) {
                 className={`${robotoMono.variable} ${bokor.variable} ${BBHSansHegartyRegular.variable} antialiased flex justify-center`}
             >
                 <NavigationBarUserDashboard />
-                <main className="w-full">{children}</main>
+                <main className="w-[80%] xl:w-full">{children}</main>
             </body>
         </html>
     );

@@ -63,7 +63,7 @@ export default async function UserPage() {
 
     return (
         <div className="bg-gray-200">
-            <div className="flex flex-col gap-6 md:p-20 h-[100vh]">
+            <div className="flex flex-col gap-6 p-4 md:p-20 h-[100vh]">
                 <UserPageClient
                     session={session}
                     summary={summary}

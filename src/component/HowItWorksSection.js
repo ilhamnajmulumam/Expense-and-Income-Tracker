@@ -40,7 +40,7 @@ export default function HowItWorkSection() {
     ];
 
     return (
-        <div className="bg-gray-200 h-[80vh] flex justify-center">
+        <div className="bg-gray-200 h-min-screen flex justify-center">
             <div className="p-20 flex flex-col items-center justify-center gap-6">
                 <h2 className={`${BBHSansBogle.className} text-4xl`}>
                     How It Works{' '}

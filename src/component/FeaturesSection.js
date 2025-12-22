@@ -49,16 +49,20 @@ export default function FeaturesSection() {
     ];
 
     return (
-        <section className="w-screen h-[100vh] flex">
-            <div className="p-20 flex flex-col items-center justify-center gap-6">
-                <h2 className={`${BBHSansBogle.className} text-4xl`}>
-                    Powerful Features to Manage Your Finances{' '}
+        <section className="w-full min-h-screen flex">
+            <div className="p-10 md:p-20 flex flex-col items-center justify-center gap-6 w-full">
+                <h2
+                    className={`${BBHSansBogle.className} text-3xl md:text-4xl text-center`}
+                >
+                    Powerful Features to Manage Your Finances
                 </h2>
-                <p className={`${robotoMono.className}`}>
+
+                <p className={`${robotoMono.className} text-center max-w-xl`}>
                     Our app offers a wide range of features to help you manage
                     your finances effectively.
                 </p>
-                <div className="flex flex-wrap justify-center ">
+
+                <div className="flex flex-wrap justify-center gap-6 w-full">
                     {features.map((feature) => (
                         <FeatureCard
                             key={feature.id}

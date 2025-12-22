@@ -24,14 +24,14 @@ export default function ReviewsSection() {
     ];
 
     return (
-        <div className="bg-white h-[100vh] w-screen p-20 flex justify-center flex-col items-center gap-3">
+        <div className="bg-white h-min-screen w-screen p-20 flex justify-center flex-col items-center gap-3">
             <h2 className={`${BBHSansBogle.className} text-4xl font-bold`}>
                 What Our Users Say
             </h2>
             <p className={`${robotoMono.className} text-xl`}>
                 Read what our users have to say about Fintrack
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
                 {reviews.map((review, index) => (
                     <ReviewsCard
                         key={index}

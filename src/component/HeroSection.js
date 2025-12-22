@@ -1,10 +1,12 @@
 'use client';
 
 import { BBHSansBogle, robotoMono } from '@/app/ui/fonts/font';
+import Image from 'next/image';
+import HeroImage from '../../public/image/Modern_flat_illustra.png';
 
 export default function HeroSection() {
     return (
-        <section className="w-screen py-20 mt-10 bg-gradient-to-b from-green-400 to-white flex justify-center">
+        <section className="w-screen py-20 mt-10 bg-gradient-to-b from-green-300 via-green-100 to-white flex justify-center flex-wrap">
             <div className="md:h-[80vh] md:flex-row flex flex-col items-center max-w-7xl">
                 <div className="p-10 mx-auto space-y-8">
                     <header>
@@ -40,9 +42,14 @@ export default function HeroSection() {
                         Explore the Blog
                     </button>
                 </div>
-                <div className="border p-10">
-                    <div className="w-[350px] h-[350px] bg-white  rounded-2xl"></div>
-                    {/* Placeholder for future image or graphic */}
+                <div className="m-10 rounded-2xl bg-white shadow-lg ">
+                    <Image
+                        src={HeroImage}
+                        alt="Hero Image"
+                        width="fill"
+                        height="fill"
+                        className="mt-4 rounded-2xl"
+                    />
                 </div>
             </div>
         </section>
